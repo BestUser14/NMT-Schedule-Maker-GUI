@@ -5,7 +5,7 @@ import json
 #this file uses 4 spaces instead of tab, no other file uses spaces
 
 
-subjects = ['ACCT','AE','AFAS','ARTH','ARTS','BIOL','BMST','BIOT','BFIN','CH E', 'CHEM', 'CE', 'COMM', 'CEFA', 'CEPR', 'CONC', 'CSE', 'CYBS', 'ECON', 'EDUC', 'EE', 'EMGT', 'ES', 'ENGL', 'ENTR', 'ENVS', 'EXPL', 'FDMA', 'GNDR', 'GEOB', 'GEOC', 'GEOL', 'GEOP', 'GRMN', 'GEX', 'HIST', 'HUMA', 'HYDR', 'IT', 'MGMT', 'MTLS', 'MATH', 'MENG', 'ME', 'MUSC', 'MUSV', 'OPTC', 'PETR', 'PHIL', 'PHYS', 'POLS', 'PORT', 'PSYC', 'PCOM', 'STCH', 'SOSC', 'SPAN', 'TCOM', 'THEA']
+subjects = ['ACCT','AE','AFAS','ARTH','ARTS','BIOL','BMST','BIOT','BFIN','CH E', 'CHEM', 'CE', 'COMM', 'CEFA', 'CEPR', 'CONC', 'CSE', 'CYBS', 'ECON', 'EDUC', 'EE', 'EMGT', 'ES', 'ENGL', 'ENTR', 'ENVS', 'EXPL', 'FDMA', 'GNDR', 'GEOB', 'GEOC', 'GEOL', 'GEOP', 'GRMN', 'GEX', 'HIST', 'HUMA', 'HYDR', 'IT', 'MGMT', 'MTLS', 'MATH', 'MENG', 'ME', 'MUSC', 'MUSV', 'OPTC', 'PETR', 'PHIL', 'PHYS', 'POLS', 'PORT', 'PSYC', 'PCOM', 'STCH', 'SOSC', 'SPAN', 'TCOM', 'THEA','CSCI']
 #f = open('text.txt','r')
 #text = f.read()
 
@@ -74,7 +74,7 @@ def super_parse(array):
     return(listy)
 
 def parse_subject(subject,semester):
-    page = requests.get('https://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term='+semester+'&p_subj='+subject)
+    page = requests.get('http://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term='+semester+'&p_subj='+subject)
     if page.text.find('<table')==-1:
         return
     index = page.text.find('<th align="left" dp="6"><font color="white">Bookstore Link</font></th>')

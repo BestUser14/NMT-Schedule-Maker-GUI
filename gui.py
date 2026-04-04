@@ -37,8 +37,8 @@ def calculate(*args):
         clas6 = class6.get()
         clas7 = class7.get()
         clas8 = class8.get()
-        year = "2026"
-        semester = "spring"
+        year = Current_Year.get()
+        semester = Current_Semester.get()
         clases=list(filter(None,[clas1,clas2,clas3,clas4,clas5,clas6,clas7,clas8]))
         if len(clases)!=0:
             f=open("classes.json","w+")
@@ -118,7 +118,7 @@ class6 = StringVar()
 class7 = StringVar()
 class8 = StringVar()
 Current_Year = StringVar()
-Current_Semester = StringVar
+Current_Semester = StringVar()
 class_entry1 = ttk.Entry(mainframe, width=7, textvariable=class1)
 class_entry2 = ttk.Entry(mainframe, width=7, textvariable=class2)
 class_entry3 = ttk.Entry(mainframe, width=7, textvariable=class3)
