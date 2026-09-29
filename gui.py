@@ -53,7 +53,6 @@ def calculate(*args):
         semester = classes.get_semester_g(year,semester) #change this later to actually use the gui
 
         clasesss = classes.get_all_classes_lazy(semester)
-        print(clasesss)
         counter = 0
         plt = optimise.show_cal(clasesss[0],semester)
 
