@@ -3,6 +3,7 @@ import statistics
 import classes
 import calendars
 from matplotlib.patches import Rectangle
+import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
@@ -97,10 +98,12 @@ def print_class_information(clas,semester):
 	return output
 
 def show_cal(class_list,semester):
+	colors = ["tab:blue","tab:orange","tab:green","tab:red","tab:purple","tab:brown","tab:pink","tab:gray","tab:olive","tab:cyan"]
+	patches = []
 	classes=[]
 	height=8
 	width=10
-	fig = Figure(figsize=(5,4),dpi=100)
+	fig = Figure(figsize=(8,4),dpi=100)
 	ax = fig.add_subplot(111)
 	ax.set_xlim(1,8)
 	ax.set_ylim(800,2200)
@@ -110,16 +113,17 @@ def show_cal(class_list,semester):
 	ax.set_xlabel("Day of week")
 	ax.set_ylabel("Time")
 	ax.set_title("Schedule")
-	#ax=plt.gca().axes
-	for i in class_list:
+	#ax=plt.gca().axesMATH 3035L
+	for index, i in enumerate(class_list):
 		classs = calendars.find_class(i,semester)
+		patches.append(mpatches.Patch(color=colors[index],label=classs["subject"]+" "+classs["class"]))
 		for day in classs["days"]:
 			time=classs["time"]
 			start=(time.split('-')[0])
 			end=(time.split('-')[1])
 			new_start=(int(start[0:2])*100)+(int(start[2:4])*1.6666666666)
 			new_end=(int(end[0:2])*100)+(int(end[2:4])*1.6666666666)
-			ax.add_patch(Rectangle((day_to_number[day]+2,new_start),1,new_end-new_start))
+			ax.add_patch(Rectangle((day_to_number[day]+2,new_start),1,new_end-new_start,color=colors[index]))
 		if "recitation_days" in classs:
 			for day in classs["recitation_days"]:
 				time=classs["recitation_time"]
@@ -127,8 +131,12 @@ def show_cal(class_list,semester):
 				end=(time.split('-')[1])
 				new_start=(int(start[0:2])*100)+(int(start[2:4])*1.6666666666)
 				new_end=(int(end[0:2])*100)+(int(end[2:4])*1.6666666666)
-				ax.add_patch(Rectangle((day_to_number[day]+2,new_start),1,new_end-new_start))
-	fig.savefig("schedules/calendar.png")
+				ax.add_patch(Rectangle((day_to_number[day]+2,new_start),1,new_end-new_start,color=colors[index]))
+	ax.legend(handles=patches,bbox_to_anchor=(1.05, 1), loc='upper left')
+	ax.axis('tight')
+	fig.tight_layout()
+	#ax.tight_layout()
+	fig.savefig("schedules/calendar.png", bbox_inches="tight")
 	return fig
 	#fig.show()
 
