@@ -133,10 +133,10 @@ def show_cal(class_list,semester):
 				new_end=(int(end[0:2])*100)+(int(end[2:4])*1.6666666666)
 				ax.add_patch(Rectangle((day_to_number[day]+2,new_start),1,new_end-new_start,color=colors[index]))
 	ax.legend(handles=patches,bbox_to_anchor=(1.05, 1), loc='upper left')
-	ax.axis('tight')
+	#ax.axis('tight')
 	fig.tight_layout()
 	#ax.tight_layout()
-	fig.savefig("schedules/calendar.png", bbox_inches="tight")
+	fig.savefig("schedules/calendar.png")
 	return fig
 	#fig.show()
 
